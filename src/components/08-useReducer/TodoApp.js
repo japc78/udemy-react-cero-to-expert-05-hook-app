@@ -1,7 +1,10 @@
 import React, { useEffect, useReducer } from 'react'
 import { todoReducer } from './todoReducer'
 import { useForm } from '../../hooks/useForm'
+
 import { TodoList } from './TodoList'
+import { TodoAdd } from './TodoAdd'
+
 import './styles.css'
 export const TodoApp = () => {
 
@@ -27,11 +30,7 @@ export const TodoApp = () => {
 	const [ todos, dispatch ] = useReducer(todoReducer, [], init);
 	// console.log(todos);
 
-	// Al manejar solo un campo (input) se puede hacer destructuracion del objeto y extraer la descripcion.
-	const [{ description }, handelInputChange, reset ] = useForm({
-		description: '',
-	});
-	console.log(description);
+
 
 
 	// Se utiliza useEffect para que cada vez que se actualize el estado todos, se grabe en localstore.
@@ -63,27 +62,11 @@ export const TodoApp = () => {
 	}
 
 
-	// Manejador del formulario.
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log("add task");
-
-		if (description.trim().length <= 1) {
-			return;
-		}
-
-		const newTodo = {
-			id: new Date().getTime(),
-			desc: description,
-			done: false
-		};
-
-		const action = {
+	const handleAddTodo = ( newTodo ) => {
+		dispatch({
 			type: 'add',
 			payload: newTodo
-		}
-		dispatch(action);
-		reset();
+		})
 	}
 
 	return (
@@ -99,27 +82,9 @@ export const TodoApp = () => {
 						handleToggle = { handleToggle }
 					/>
 				</div>
+
 				<div className="col-5">
-					<h4>Agregar TODO</h4>
-					<hr/>
-
-					<form onSubmit= { handleSubmit }>
-						<input
-							type="text"
-							name="description"
-							onChange={ handelInputChange }
-							className="form-control"
-							placeholder="Aprender ..."
-							value={ description }
-							autoComplete="off"/>
-
-						<button
-							type="submit"
-							className="btn btn-sm btn-outline-primary mt-1 btn-block"
-						>
-							Agregar
-						</button>
-					</form>
+					<TodoAdd handleAddTodo = { handleAddTodo }/>
 				</div>
 			</div>
 		</div>
