@@ -1,13 +1,13 @@
 import React from 'react'
 import { useCounter } from '../../hooks/useCounter'
-import { useFecth } from '../../hooks/useFecth'
+import { useFetch } from '../../hooks/useFetch'
 import './styles.css'
 export const MultipleCustomHooks = () => {
 
 	const { counter, increment } = useCounter(1);
 
 	// const state = useFecth('https://www.breakingbadapi.com/api/quotes/1');
-	const { loading, data } = useFecth(`https://www.breakingbadapi.com/api/quotes/${counter}`);
+	const { loading, data } = useFetch(`https://www.breakingbadapi.com/api/quotes/${counter}`);
 
 	//doble negacion !! esplicacion: !data, sino tiene valor, !!data == data, es decir si tiene valor.
 	// https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Operadores/Operadores_l%C3%B3gicos
