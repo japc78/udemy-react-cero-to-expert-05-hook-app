@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
-export const useFecth = ( url ) => {
+export const useFetch = ( url ) => {
 	const isMounted = useRef(true);
 
-	const [state, setState] = useState({ data: null, loading: true, error: null})
+	const [state, setState] = useState({ data: null, loading: true, error: null});
 
 
 	// Creamos un useEffect para poder controlar si el componente esta montado o no, [] en el segundo atributo indica que solo se ejecutara el use effects cuando se desmonte el componente y en ese caso cambiamos el valor del useRef isMounted a false.
@@ -11,7 +11,7 @@ export const useFecth = ( url ) => {
 		return () => {
 			isMounted.current = false;
 		}
-	}, [])
+	}, []);
 
 
 	useEffect(() => {
@@ -35,8 +35,15 @@ export const useFecth = ( url ) => {
 					})
 				}
 			})
+			.catch(()=> {
+				setState({
+					data: null,
+					loading: false,
+					error: 'No se pudo cargar la info'
+				})
+			});
 
-	}, [url])
+	}, [url]);
 
 	return state
 }
