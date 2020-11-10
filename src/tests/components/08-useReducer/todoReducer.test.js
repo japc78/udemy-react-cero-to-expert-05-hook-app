@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
-import { todoReducer } from '../../components/08-useReducer/todoReducer'
 import { demoTodos } from './fixtures/demoTodos';
+import { todoReducer } from '../../../components/08-useReducer/todoReducer';
 
 describe('Tests on function todoReducer()', () => {
 
