@@ -9,7 +9,6 @@ jest.mock('../../../hooks/useFetch')
 jest.mock('../../../hooks/useCounter')
 
 
-
 describe('Test on <MultipleCustomHooks/>', () => {
 
 	useCounter.mockReturnValue({
