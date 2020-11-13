@@ -12,10 +12,12 @@ jest.mock('../../../hooks/useCounter')
 
 describe('Test on <MultipleCustomHooks/>', () => {
 
-	// useCounter.mockReturnValue({
-	// 	counter: 1,
-	// 	increment: () => {}
-	// });
+	useCounter.mockReturnValue({
+		counter: 1,
+		increment: () => {}
+	});
+
+
 
 	test('should show it correctly', () => {
 		useFetch.mockReturnValue({
@@ -24,10 +26,10 @@ describe('Test on <MultipleCustomHooks/>', () => {
 			error: null
 		});
 
-		useCounter.mockReturnValue({
-			counter: 1,
-			increment: () => {}
-		});
+		// useCounter.mockReturnValue({
+		// 	counter: 1,
+		// 	increment: () => {}
+		// });
 
 		const wrapper = shallow(<MultipleCustomHooks/>);
 		expect( wrapper ).toMatchSnapshot();
