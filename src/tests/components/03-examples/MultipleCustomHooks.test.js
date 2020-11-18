@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+import ''
 import { shallow } from 'enzyme'
 import { MultipleCustomHooks } from '../../../components/03-examples/MultipleCustomHooks'
 import { useFetch } from '../../../hooks/useFetch';
@@ -11,9 +12,11 @@ jest.mock('../../../hooks/useCounter')
 
 describe('Test on <MultipleCustomHooks/>', () => {
 
-	useCounter.mockReturnValue({
-		counter: 1,
-		increment: () => {}
+	beforeEach(() => {
+		useCounter.mockReturnValue({
+			counter: 1,
+			increment: () => {}
+		});
 	});
 
 
@@ -23,11 +26,6 @@ describe('Test on <MultipleCustomHooks/>', () => {
 			loading: true,
 			error: null
 		});
-
-		// useCounter.mockReturnValue({
-		// 	counter: 1,
-		// 	increment: () => {}
-		// });
 
 		const wrapper = shallow(<MultipleCustomHooks/>);
 		expect( wrapper ).toMatchSnapshot();
@@ -42,11 +40,6 @@ describe('Test on <MultipleCustomHooks/>', () => {
 			loading: false,
 			error: null
 		});
-
-		// useCounter.mockReturnValue({
-		// 	counter: 1,
-		// 	increment: () => {}
-		// });
 
 		const wrapper = shallow(<MultipleCustomHooks/>);
 		// console.log(wrapper.html());
